@@ -5,8 +5,10 @@ import { Button } from "antd";
 
 function App() {
   return (
-    <div>
-      <Button type="primary">Antd Btn</Button>
+    <div className="App">
+      <p className="text-center">
+        <Button type="primary">Antd Btn</Button>
+      </p>
     </div>
   );
 }
