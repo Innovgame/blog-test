@@ -1,14 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.less";
-import { Button } from "antd";
+
+import CounterDemo from "@/components/counter-demo";
 
 function App() {
   return (
     <div className="App">
-      <p className="text-center">
-        <Button type="primary">Antd Btn</Button>
-      </p>
+      <CounterDemo></CounterDemo>
     </div>
   );
 }
