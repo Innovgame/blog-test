@@ -15,7 +15,6 @@ function renderRoutes(routes, contextPath) {
     }
 
     newContextPath = newContextPath.replace(/\/+/g, "/");
-    console.info(routes, newContextPath);
 
     if (item.component && item.childRoutes) {
       const childRoutes = renderRoutes(item.childRoutes, newContextPath);
@@ -50,6 +49,7 @@ function renderRoutes(routes, contextPath) {
 
 function App() {
   const children = renderRoutes(routes, "/");
+  console.info(children);
   return (
     // <div className="App">
     //   {/* <CounterDemo></CounterDemo> */}

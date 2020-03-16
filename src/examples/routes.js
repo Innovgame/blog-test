@@ -2,6 +2,7 @@ import Layout from '@/components/layout';
 import ExamplePage from './index';
 import CounterDemo from '@/components/counter-demo';
 
+import FormBuilder from './formBuilder';
 
 export default {
   path: 'examples',
@@ -15,6 +16,11 @@ export default {
       path: 'count',
       component: CounterDemo,
       name: "Count Page"
+    },
+    {
+      path: 'form/:formId',
+      name: "form Page",
+      component: FormBuilder
     }
   ]
 }
