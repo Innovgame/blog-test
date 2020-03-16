@@ -1,4 +1,4 @@
-import React, { Comment } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import routes from "@/routes/config";
 import "./App.less";
@@ -54,7 +54,9 @@ function App() {
     // <div className="App">
     //   {/* <CounterDemo></CounterDemo> */}
     // </div>
-    <BrowserRouter>{children}</BrowserRouter>
+    <BrowserRouter>
+      <Suspense fallback={<div>loading...</div>}>{children}</Suspense>
+    </BrowserRouter>
   );
 }
 
