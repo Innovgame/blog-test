@@ -4,9 +4,9 @@ import exampleRoutes from "@/examples/routes";
 import PageNotFound from '@/components/not-found';
 
 const childRoutes = [
-  homeRoutes,
   adminRoutes,
   exampleRoutes,
+  homeRoutes,
 ];
 
 // generator all the routes

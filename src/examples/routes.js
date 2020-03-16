@@ -1,8 +1,8 @@
 import Layout from '@/components/layout';
 import ExamplePage from './index';
 import CounterDemo from '@/components/counter-demo';
-
 import FormBuilder from './formBuilder';
+import CodeSplitting from './codeSplitting';
 
 export default {
   path: 'examples',
@@ -21,6 +21,10 @@ export default {
       path: 'form/:formId',
       name: "form Page",
       component: FormBuilder
+    },
+    {
+      path: 'code-splitting',
+      component: CodeSplitting
     }
   ]
 }
