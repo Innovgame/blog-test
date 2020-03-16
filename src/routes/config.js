@@ -1,10 +1,12 @@
-import exampleRoutes from '@/examples/routes';
-import homeRoutes from "@/views/routes";
-import PageNotFound from "@/components/not-found";
+import homeRoutes from '@/views/web/routes';
+import adminRoutes from "@/views/admin/routes";
+import exampleRoutes from "@/examples/routes";
+import PageNotFound from '@/components/not-found';
 
 const childRoutes = [
-  exampleRoutes,
   homeRoutes,
+  adminRoutes,
+  exampleRoutes,
 ];
 
 // generator all the routes
