@@ -1,5 +1,6 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import Loadable from "react-loadable";
+import Loading from "@/components/loading";
 
 /**
  * 使用 webpack 的 import 方法实现动态加载组件！dynamic import
@@ -41,7 +42,7 @@ export default WrappedComponent =>
   class extends Component {
     render() {
       return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <WrappedComponent {...this.props} />
         </Suspense>
       );

@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import routes from "@/routes/config";
 import "./App.less";
+import Loading from "@/components/loading";
 
 function renderRoutes(routes, contextPath) {
   const children = [];
@@ -29,14 +30,25 @@ function renderRoutes(routes, contextPath) {
         />
       );
     } else if (item.component) {
-      children.push(
-        <Route
-          key={newContextPath}
-          component={item.component}
-          path={newContextPath}
-          exact
-        />
-      );
+      if (typeof item.component === "function") {
+        children.push(
+          <Route
+            key={newContextPath}
+            component={item.component}
+            path={newContextPath}
+            exact
+          />
+        );
+      } else {
+        children.push(
+          <Route
+            key={newContextPath}
+            path={newContextPath}
+            component={() => <item.component />}
+            exact
+          />
+        );
+      }
     } else if (item.childRoutes) {
       item.childRoutes.forEach(r => renderRoute(r, newContextPath));
     }
@@ -55,7 +67,7 @@ function App() {
     //   {/* <CounterDemo></CounterDemo> */}
     // </div>
     <BrowserRouter>
-      <Suspense fallback={<div>loading...</div>}>{children}</Suspense>
+      <Suspense fallback={<Loading />}>{children}</Suspense>
     </BrowserRouter>
   );
 }
