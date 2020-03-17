@@ -7,6 +7,7 @@ import ExamplePage from "./index";
 import CounterDemo from "@/components/counter-demo";
 import FormBuilder from "./formBuilder";
 import CodeSplitting from "./codeSplitting";
+import AuthPage from './authPage';
 
 const LazyDemo = lazy(() => import("./codeSplitting/demo"));
 const RouteLazy = name => () => ( <
@@ -42,6 +43,11 @@ export default {
       path: "lazy-demo",
       component: RouteLazy("react route lazy")
       // component: LazyDemo
+    },
+    {
+      path: 'auth',
+      component: AuthPage,
+      protected: true
     }
   ]
 };
