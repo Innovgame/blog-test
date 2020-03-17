@@ -5,7 +5,7 @@ import WebLayout from '@/components/layout/web';
 import PageNotFound from '@/components/not-found';
 
 import Home from './home';
-import Demo from './demo';
+import Demo from './header/authModal';
 
 export default {
   path: '/',
@@ -17,7 +17,7 @@ export default {
     },
     {
       path: 'demo',
-      component: Demo
+      component: () => <Demo type="demo" visible={true} handleClose={() => console.info("close")}/>
     },
     {
       path: '*',
