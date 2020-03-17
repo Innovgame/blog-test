@@ -60,20 +60,19 @@ const formMeta = {
     {
       key: "password",
       label: "Password",
-      widget: Input,
-      // 定义widget 部件的 props
-      widgetProps: {
-        prefix: <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />,
-        placeholder: "please input your password"
-      },
-      type: "password",
+      widget: (
+        <Input
+          type="password"
+          prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+          placeholder="please input your password"
+        />
+      ),
       required: true // 默认增加了 rules [required: true, message: `${label} is required`]
     },
     {
       key: "date",
       label: "Birth date",
-      widget: DatePicker,
-      widgetProps: { style: { width: "100%" } }
+      widget: <DatePicker style={{ width: "100%" }} />
     },
     {
       key: "gender",
