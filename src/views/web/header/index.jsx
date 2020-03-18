@@ -79,16 +79,30 @@ class BlogHeader extends Component {
     const { loginModalVisible, registryModalVisible } = this.state;
     return (
       <Header className="header-container">
-        <Row>
-          <Col lg={{ span: 4 }} md={{ span: 4 }} xs={{ span: 0 }}></Col>
+        <Row style={{ display: "flex", alignItems: "center" }}>
+          <Col
+            lg={{ span: 4 }}
+            md={{ span: 4 }}
+            xs={{ span: 0 }}
+            style={{ color: "#fff" }}
+          >
+            header left
+          </Col>
           <Col lg={{ span: 14 }} md={{ span: 14 }} xs={{ span: 0 }}>
             <NavBar
               menus={menus}
               currentSelectedKey={this.props.location.pathname}
             />
           </Col>
-          <Col lg={{ span: 0 }} md={{ span: 0 }} xs={{ span: 10 }}></Col>
-          <Col lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 14 }}>
+          <Col lg={{ span: 0 }} md={{ span: 0 }} xs={{ span: 10 }}>
+            小屏幕可见
+          </Col>
+          <Col
+            style={{ textAlign: "center" }}
+            lg={{ span: 6 }}
+            md={{ span: 6 }}
+            xs={{ span: 14 }}
+          >
             {!this.props.isLogin ? (
               <div className="nav-auth">
                 <Button

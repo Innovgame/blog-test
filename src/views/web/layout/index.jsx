@@ -20,10 +20,12 @@ class WebLayout extends Component {
           <BlogHeader />
           <Layout>
             <Content>{this.props.children}</Content>
-            <Sider theme="dark">Sider</Sider>
+            <Sider theme="light">Sider</Sider>
           </Layout>
           <Footer style={{ textAlign: "center" }}>
-            © 2020 <Icon type="user" /> Rekor
+            Blog ©2020
+            <Icon type="user" />
+            Created by Rekor
           </Footer>
         </div>
       </Layout>
