@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { Layout, Menu, Icon, Row, Col, Button, Dropdown, Avatar } from "antd";
 import "./index.less";
@@ -11,8 +11,8 @@ import AuthModal from "../authModal";
 
 const Header = Layout.Header;
 
-const NavBar = ({ menus }) => (
-  <Menu mode="horizontal" defaultSelectedKeys={[menus[0]["link"]]}>
+const NavBar = ({ menus, currentSelectedKey = "/" }) => (
+  <Menu mode="horizontal" defaultSelectedKeys={[currentSelectedKey]}>
     {menus.map(nav => (
       <Menu.Item key={nav.link}>
         <Link to={nav.link}>
@@ -26,7 +26,7 @@ const NavBar = ({ menus }) => (
 
 // use for Avatar
 const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
-
+@withRouter
 @connect(state => ({ isLogin: state.auth.isLogin }), {
   logout
 })
@@ -82,7 +82,10 @@ class BlogHeader extends Component {
         <Row>
           <Col lg={{ span: 4 }} md={{ span: 4 }} xs={{ span: 0 }}></Col>
           <Col lg={{ span: 14 }} md={{ span: 14 }} xs={{ span: 0 }}>
-            <NavBar menus={menus} />
+            <NavBar
+              menus={menus}
+              currentSelectedKey={this.props.location.pathname}
+            />
           </Col>
           <Col lg={{ span: 0 }} md={{ span: 0 }} xs={{ span: 10 }}></Col>
           <Col lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 14 }}>
