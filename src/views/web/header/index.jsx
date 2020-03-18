@@ -6,24 +6,23 @@ import { Layout, Menu, Icon, Row, Col, Button, Dropdown, Avatar } from "antd";
 import "./index.less";
 import { logout } from "@/redux/auth/actions";
 
-import menu from "./menu";
+import menus from "./menu";
 import AuthModal from "../authModal";
-import connect from "react-redux/lib/connect/connect";
 
 const Header = Layout.Header;
 
-const NavBar = ({ menu = [] }) => {
-  <Menu mode="horizontal" defaultOpenKeys={menu[0]["link"]}>
-    {menu.map(nav => (
-      <Menu.item key={nav.link}>
+const NavBar = ({ menus }) => (
+  <Menu mode="horizontal" defaultSelectedKeys={[menus[0]["link"]]}>
+    {menus.map(nav => (
+      <Menu.Item key={nav.link}>
         <Link to={nav.link}>
           {nav.icon && <Icon type={nav.icon} />}
-          <span className="icon-text">{nav.title}</span>
+          <span className="nav-text">{nav.title}</span>
         </Link>
-      </Menu.item>
+      </Menu.Item>
     ))}
-  </Menu>;
-};
+  </Menu>
+);
 
 // use for Avatar
 const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
@@ -34,15 +33,15 @@ const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
 class BlogHeader extends Component {
   state = {
     loginModalVisible: false,
-    registerModalVisible: false,
+    registryModalVisible: false,
     avatarColor: colorList[Math.floor(Math.random() * 4)]
   };
 
   handleCloseRegistry = () => {
-    this.handleClose("login");
+    this.handleClose("registry");
   };
   handleCloseLogin = () => {
-    this.handleClose("registry");
+    this.handleClose("login");
   };
 
   handleClose = type => {
@@ -72,18 +71,18 @@ class BlogHeader extends Component {
 
   showRegistryModal = () => {
     this.setState({
-      registerModalVisible: true
+      registryModalVisible: true
     });
   };
 
   render() {
-    const { loginModalVisible, registerModalVisible } = this.state;
+    const { loginModalVisible, registryModalVisible } = this.state;
     return (
       <Header className="header-container">
         <Row>
           <Col lg={{ span: 4 }} md={{ span: 4 }} xs={{ span: 0 }}></Col>
           <Col lg={{ span: 14 }} md={{ span: 14 }} xs={{ span: 0 }}>
-            <NavBar menu={menu} />
+            <NavBar menus={menus} />
           </Col>
           <Col lg={{ span: 0 }} md={{ span: 0 }} xs={{ span: 10 }}></Col>
           <Col lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 14 }}>
@@ -131,8 +130,8 @@ class BlogHeader extends Component {
         }
         {
           <AuthModal
-            visible={registerModalVisible}
-            type="register"
+            visible={registryModalVisible}
+            type="registry"
             handleClose={this.handleCloseRegistry}
           />
         }

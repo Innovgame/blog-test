@@ -31,7 +31,7 @@ class AuthModal extends Component {
     const type = this.props.type;
     console.info("click button", type);
     type === "login" ? this.props.login() : this.props.logout();
-    this.props.handleClose(type);
+    this.props.handleClose();
   };
 
   render() {
@@ -42,7 +42,7 @@ class AuthModal extends Component {
         width={320}
         footer={null}
         visible={this.props.visible}
-        onCancel={this.props.handleClose}
+        onCancel={() => this.props.handleClose()}
       >
         <Input
           name="username"

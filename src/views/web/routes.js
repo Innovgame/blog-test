@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import WebLayout from '@/components/layout/web';
+import WebLayout from '@/views/web/layout';
 import PageNotFound from '@/components/not-found';
 
 import Home from './home';
