@@ -9,7 +9,7 @@ import { login, logout } from "@/redux/auth/actions";
   login,
   logout
 })
-class LoginModal extends Component {
+class AuthModal extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
     visible: PropTypes.bool.isRequired,
@@ -74,4 +74,4 @@ class LoginModal extends Component {
   }
 }
 
-export default LoginModal;
+export default AuthModal;

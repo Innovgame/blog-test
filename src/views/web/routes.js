@@ -5,7 +5,6 @@ import WebLayout from '@/components/layout/web';
 import PageNotFound from '@/components/not-found';
 
 import Home from './home';
-import Demo from './header/authModal';
 
 export default {
   path: '/',
@@ -14,10 +13,6 @@ export default {
   childRoutes: [{
       path: '',
       component: Home
-    },
-    {
-      path: 'demo',
-      component: () => <Demo type="demo" visible={true} handleClose={() => console.info("close")}/>
     },
     {
       path: '*',
