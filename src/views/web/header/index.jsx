@@ -8,11 +8,17 @@ import { logout } from "@/redux/auth/actions";
 
 import menus from "./menu";
 import AuthModal from "../authModal";
+import { node } from "prop-types";
 
 const Header = Layout.Header;
 
-const NavBar = ({ menus, currentSelectedKey = "/" }) => (
-  <Menu mode="horizontal" defaultSelectedKeys={[currentSelectedKey]}>
+const NavBar = ({
+  menus,
+  currentSelectedKey = "/",
+  mode = "horizontal",
+  ...props
+}) => (
+  <Menu mode={mode} defaultSelectedKeys={[currentSelectedKey]} {...props}>
     {menus.map(nav => (
       <Menu.Item key={nav.link}>
         <Link to={nav.link}>
@@ -77,6 +83,11 @@ class BlogHeader extends Component {
 
   render() {
     const { loginModalVisible, registryModalVisible } = this.state;
+    let title = "";
+    const matchMenu = menus.find(
+      item => item.link === this.props.location.pathname
+    );
+    if (!!matchMenu) this.title = matchMenu.title;
     return (
       <Header className="header-container">
         <Row style={{ display: "flex", alignItems: "center" }}>
@@ -95,7 +106,24 @@ class BlogHeader extends Component {
             />
           </Col>
           <Col lg={{ span: 0 }} md={{ span: 0 }} xs={{ span: 10 }}>
-            小屏幕可见
+            <Dropdown
+              overlay={
+                <NavBar
+                  mode="vertical"
+                  menus={menus}
+                  currentSelectedKey={this.props.location.pathname}
+                  style={{ width: 90, borderRadius: "5%" }}
+                />
+              }
+              trigger={["click"]}
+            >
+              <div>
+                <Button type="primary" ghost style={{ border: node }}>
+                  {title}
+                  <Icon type="caret-down" />
+                </Button>
+              </div>
+            </Dropdown>
           </Col>
           <Col
             style={{ textAlign: "center" }}
@@ -125,16 +153,20 @@ class BlogHeader extends Component {
                 </Button>
               </div>
             ) : (
-              <Dropdown
-                placement="bottomCenter"
-                overlay={this.renderAvatarDropdownMenu()}
-              >
-                <Avatar
-                  className="user-avatar"
-                  size="large"
-                  style={{ backgroundColor: this.state.avatarColor }}
-                ></Avatar>
-              </Dropdown>
+              <div className="user-info">
+                <Dropdown
+                  placement="bottomCenter"
+                  overlay={this.renderAvatarDropdownMenu()}
+                >
+                  <Avatar
+                    className="user-avatar"
+                    size="large"
+                    style={{ backgroundColor: this.state.avatarColor }}
+                  >
+                    Rekor
+                  </Avatar>
+                </Dropdown>
+              </div>
             )}
           </Col>
         </Row>
