@@ -83,11 +83,11 @@ class BlogHeader extends Component {
 
   render() {
     const { loginModalVisible, registryModalVisible } = this.state;
-    let title = "";
+    let title = "首页";
     const matchMenu = menus.find(
       item => item.link === this.props.location.pathname
     );
-    if (!!matchMenu) this.title = matchMenu.title;
+    if (!!matchMenu) title = matchMenu.title;
     return (
       <Header className="header-container">
         <Row style={{ display: "flex", alignItems: "center" }}>
