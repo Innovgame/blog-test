@@ -8,6 +8,7 @@ import CounterDemo from "@/components/counter-demo";
 import FormBuilder from "./formBuilder";
 import CodeSplitting from "./codeSplitting";
 import AuthPage from './authPage';
+import Write from "./markdown/write";
 
 const LazyDemo = lazy(() => import("./codeSplitting/demo"));
 const RouteLazy = name => () => ( <
@@ -48,6 +49,16 @@ export default {
       path: 'auth',
       component: AuthPage,
       protected: true
+    },
+    {
+      path: 'markdown',
+      childRoutes: [{
+        path: "write",
+        component: Write
+      }, {
+        path: 'show',
+        component: Write
+      }]
     }
   ]
 };
