@@ -2,10 +2,12 @@ import homeRoutes from '@/views/web/routes';
 import adminRoutes from "@/views/admin/routes";
 import exampleRoutes from "@/examples/routes";
 import PageNotFound from '@/components/not-found';
+import rootRoutes from './rootRoutes';
 
 const childRoutes = [
   adminRoutes,
   exampleRoutes,
+  rootRoutes,
   homeRoutes,
 ];
 

@@ -1,0 +1,39 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: auto;
+  background: url("../../../assets/login-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  background-color: #f0f2f5;
+
+  .login-form {
+    width: 368px;
+    // margin-top: -200px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    text-align: center;
+
+    .App-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 50px;
+      animation: AppLogoSpin infinite 20s linear;
+    }
+
+    @keyframes AppLogoSpin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
