@@ -6,6 +6,13 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import store from "@/redux";
 
+import hljs from "highlight.js";
+import javascript from "highlight.js/lib/languages/javascript";
+import "highlight.js/styles/atom-one-light.css";
+import "@/style/index.less";
+
+hljs.registerLanguage("javascript", javascript);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

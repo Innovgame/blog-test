@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { login } from "@/redux/auth/actions";
 import { message, Button, Input, Icon } from "antd";
 
-import logo from "@/assets/logo.jpeg";
+import logo from "@/logo.svg";
 import "./index.less";
 
 @withRouter
