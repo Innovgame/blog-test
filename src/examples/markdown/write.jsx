@@ -8,6 +8,7 @@ import marked from "marked";
 
 import SimpleMDE from "simplemde";
 import "simplemde/dist/simplemde.min.css";
+import axios from "@/lib/axios";
 
 hljs.registerLanguage("javascript", javascript);
 
@@ -44,6 +45,8 @@ class Write extends Component {
     const markdownText = translateMarkdown(this.smde.value());
     console.log("markdown to html", markdownText);
     this.setState({ markdownText });
+
+    axios.post("/md", { content: markdownText });
   };
 
   render() {

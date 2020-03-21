@@ -8,7 +8,8 @@ import CounterDemo from "@/components/counter-demo";
 import FormBuilder from "./formBuilder";
 import CodeSplitting from "./codeSplitting";
 import AuthPage from './authPage';
-import Write from "./markdown/write";
+const Write = lazy(() => import('./markdown/write'));
+const Show = lazy(() => import('./markdown/show'));
 
 const LazyDemo = lazy(() => import("./codeSplitting/demo"));
 const RouteLazy = name => () => ( <
@@ -57,7 +58,7 @@ export default {
         component: Write
       }, {
         path: 'show',
-        component: Write
+        component: Show
       }]
     }
   ]

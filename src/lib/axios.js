@@ -5,7 +5,7 @@ import {
 
 const instance = axios.create({
   timeout: 2000,
-  baseURL: "http://localhost:5000"
+  baseURL: "http://localhost:3000"
 });
 
 //拦截请求
@@ -29,7 +29,7 @@ instance.interceptors.response.use(
     return response.data;
   },
   error => {
-    message.error(error.response.statusText);
+    // message.error(error.response.statusText);
     return Promise.reject(error);
   }
 );
