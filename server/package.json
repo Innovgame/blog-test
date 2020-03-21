@@ -2,15 +2,22 @@
   "name": "blog-server",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "rekor",
   "license": "MIT",
   "dependencies": {
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^8.0.8",
-    "koa2-cors": "^2.0.6"
+    "koa2-cors": "^2.0.6",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "koa-logger": "^3.2.1",
     "nodemon": "^2.0.2"
   }
