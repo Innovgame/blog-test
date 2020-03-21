@@ -17,7 +17,7 @@ app.use(router.routes(), router.allowedMethods());
 app.listen(5000, () => {
   db.sequelize
     .sync({
-      force: true
+      force: false
     })
     .then(() => {
       console.log('sequelize connect success')
