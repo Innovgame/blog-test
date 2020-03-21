@@ -1,4 +1,9 @@
 const ExampleModel = require('../models').examples;
+const {
+  encrypt,
+  comparePassword
+} = require('../lib/bcrypt');
+
 
 module.exports = {
   async login(ctx) {
@@ -14,18 +19,19 @@ module.exports = {
       })
       if (!user) {
         ctx.body = {
-          code: 1,
+          code: 403,
           message: '用户名不存在'
         }
       } else {
-        if (user.password !== password) {
+        const isMatch = await comparePassword(password, user.password);
+        if (!isMatch) {
           ctx.body = {
-            code: 1,
+            code: 403,
             message: '密码不正确'
           }
         } else {
           ctx.body = {
-            code: 0,
+            code: 200,
             message: '登录成功',
             data: user
           }
@@ -55,21 +61,27 @@ module.exports = {
         msg: 'This username account is already in use.'
       }
     } else {
-      const result = await ExampleModel.create({
-        username,
-        password
-      })
+      try {
+        const saltPwd = await encrypt(password);
+        const result = await ExampleModel.create({
+          username,
+          password: saltPwd
+        })
 
-      if (result !== null) {
-        ctx.body = {
-          code: 0,
-          message: '注册成功'
+        if (result !== null) {
+          ctx.body = {
+            code: 200,
+            message: '注册成功'
+          }
+        } else {
+          ctx.body = {
+            code: 403,
+            message: '注册失败'
+          }
         }
-      } else {
-        ctx.body = {
-          code: 1,
-          message: '注册失败'
-        }
+      } catch (error) {
+        console.log(error)
+        ctx.throw(500, 'Internal Server Error.')
       }
     }
   }
