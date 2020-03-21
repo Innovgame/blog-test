@@ -33,7 +33,7 @@ const NavBar = ({
 // use for Avatar
 const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
 @withRouter
-@connect(state => ({ isLogin: state.auth.isLogin }), {
+@connect(state => ({ isLogin: state.auth.isLogin, user: state.auth.user }), {
   logout
 })
 class BlogHeader extends Component {
@@ -163,7 +163,7 @@ class BlogHeader extends Component {
                     size="large"
                     style={{ backgroundColor: this.state.avatarColor }}
                   >
-                    Rekor
+                    {this.props.user.username}
                   </Avatar>
                 </Dropdown>
               </div>

@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Input, Icon, Button } from "antd";
 
-import { login, logout } from "@/redux/auth/actions";
+import { login, logout, register } from "@/redux/auth/actions";
 
 @connect(null, {
   login,
-  logout
+  logout,
+  register
 })
 class AuthModal extends Component {
   static propTypes = {
@@ -30,7 +31,9 @@ class AuthModal extends Component {
   handleSubmit = e => {
     const type = this.props.type;
     console.info("click button", type);
-    type === "login" ? this.props.login() : this.props.logout();
+    type === "login"
+      ? this.props.login({ ...this.state })
+      : this.props.register({ ...this.state });
     this.props.handleClose();
   };
 

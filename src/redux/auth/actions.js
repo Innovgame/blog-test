@@ -1,11 +1,66 @@
 import {
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  REGISTER
 } from './constants';
+import axios from '@/lib/axios';
 
-export const login = () => {
-  return {
-    type: LOGIN
+export const login = ({
+  username,
+  password
+}) => {
+  return (dispatch) => {
+    axios.post('/examples/login', {
+        username,
+        password
+      })
+      .then(res => {
+        if (res.code !== 0) {
+          return new Error('用户名或密码错误');
+        }
+        dispatch({
+          type: LOGIN,
+          payload: res
+        });
+      }).catch(err => {
+        console.error(err);
+      });
+  };
+};
+
+export const register = ({
+  username,
+  password
+}) => {
+  return (dispatch) => {
+    axios.post('/examples/register', {
+        username,
+        password
+      })
+      .then((res) => {
+        if (res.code !== 0) {
+          console.log(res);
+          return new Error('用户已注册');
+        } else {
+          dispatch({
+            type: REGISTER
+          });
+          return axios.post('examples/login', {
+            username,
+            password
+          });
+        }
+      })
+      .then(res => {
+        if (res.code !== 0) {
+          return Error('用户名或密码错误');
+        }
+        dispatch({
+          type: LOGIN,
+          payload: res
+        });
+      })
+      .catch(err => console.error(err));
   }
 };
 

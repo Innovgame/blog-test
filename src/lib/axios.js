@@ -4,8 +4,8 @@ import {
 } from 'antd';
 
 const instance = axios.create({
-  timeout: 2000,
-  baseURL: "http://localhost:3000"
+  timeout: 20000,
+  baseURL: "http://localhost:5000"
 });
 
 //拦截请求
