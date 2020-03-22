@@ -9,7 +9,7 @@ class Home extends Component {
       .then(res => {
         message.success(res);
       })
-      .catch(err => message.error(err));
+      .catch(err => console.error("request error"));
   };
 
   test2 = () => {
