@@ -15,9 +15,10 @@ export const login = ({
         password
       })
       .then(res => {
-        if (res.code !== 0) {
+        if (res.code !== 200) {
           return new Error('用户名或密码错误');
         }
+        localStorage.setItem('token', res.data.token);
         dispatch({
           type: LOGIN,
           payload: res

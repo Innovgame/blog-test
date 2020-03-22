@@ -7,6 +7,7 @@ router.get('/', async (ctx) => {
   ctx.body = "examples router test";
 });
 
+router.post('/test', ExampleController.auth);
 router.post('/login', ExampleController.login);
 router.post('/register', ExampleController.register);
 

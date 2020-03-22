@@ -1,12 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "@/lib/axios";
+import { Button, message } from "antd";
 
-const Home = () => {
-  axios
-    .request("/")
-    .then(res => console.info(res))
-    .catch(err => console.error(err));
-  return <div>welcome home page</div>;
-};
+class Home extends Component {
+  test = () => {
+    axios
+      .post("/examples/test")
+      .then(res => {
+        message.success(res);
+      })
+      .catch(err => message.error(err));
+  };
+
+  test2 = () => {
+    localStorage.clear();
+    message.success("clear token");
+  };
+
+  render() {
+    return (
+      <div>
+        <Button onClick={this.test}>click</Button>
+        <Button onClick={this.test2}>clear local</Button>
+      </div>
+    );
+  }
+}
 
 export default Home;

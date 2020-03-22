@@ -1,8 +1,13 @@
+const jwt = require('jsonwebtoken');
 const ExampleModel = require('../models').examples;
 const {
   encrypt,
   comparePassword
 } = require('../lib/bcrypt');
+const {
+  TOKEN_NAME,
+  TOKEN_EXPIRESIN
+} = require('../config/index');
 
 
 module.exports = {
@@ -30,18 +35,29 @@ module.exports = {
             message: '密码不正确'
           }
         } else {
+          const token = jwt.sign({
+            username
+          }, TOKEN_NAME, {
+            expiresIn: TOKEN_EXPIRESIN
+          }); // 生成 token
           ctx.body = {
             code: 200,
             message: '登录成功',
-            data: user
+            data: {
+              username: user.username,
+              artcle: user.artcle,
+              token,
+            }
           }
         }
       }
     } catch (err) {
-      ctx.body = {
-        code: 500,
-        msg: 'Internal Server Error.'
-      }
+      console.log(err);
+      throw err;
+      // ctx.body = {
+      //   code: 500,
+      //   msg: 'Internal Server Error.'
+      // }
     }
   },
 
@@ -81,8 +97,12 @@ module.exports = {
         }
       } catch (error) {
         console.log(error)
-        ctx.throw(500, 'Internal Server Error.')
+        // ctx.throw(500, 'Internal Server Error.')
+        throw error;
       }
     }
+  },
+  async auth(ctx) {
+    ctx.body = 'you get auth';
   }
 }
