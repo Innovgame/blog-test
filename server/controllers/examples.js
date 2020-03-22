@@ -5,7 +5,7 @@ const {
   comparePassword
 } = require('../lib/bcrypt');
 const {
-  TOKEN_NAME,
+  TOKEN_SECRET,
   TOKEN_EXPIRESIN
 } = require('../config/index');
 
@@ -37,7 +37,7 @@ module.exports = {
         } else {
           const token = jwt.sign({
             username
-          }, TOKEN_NAME, {
+          }, TOKEN_SECRET, {
             expiresIn: TOKEN_EXPIRESIN
           }); // 生成 token
           ctx.body = {

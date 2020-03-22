@@ -12,8 +12,8 @@
       "envFile": "${workspaceFolder}/.vscode/.env",
       "runtimeVersion": "12.13.0",
       "restart": true,
-      // "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "console": "internalConsole",
+      // "internalConsoleOptions": "neverOpen",
       "skipFiles": [
         "<node_internals>/**"
       ]
