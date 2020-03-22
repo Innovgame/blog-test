@@ -5,11 +5,15 @@ const logger = require("koa-logger");
 
 const router = require('./router');
 const db = require('./models');
+const errorHandle = require('./middlewares/errorHandle');
+const checkToken = require('./middlewares/checkToken');
 
 const app = new Koa();
 
 app
   .use(cors())
+  .use(errorHandle)
+  .use(checkToken)
   .use(logger())
   .use(bodyParser());
 
