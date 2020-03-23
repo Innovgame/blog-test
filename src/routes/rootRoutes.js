@@ -1,6 +1,6 @@
 import {
-  lazy
-} from 'react';
+  asyncComponent as lazy
+} from '@/components/helper/lazyLoader';
 
 const Login = lazy(() => import('@/views/admin/login'));
 

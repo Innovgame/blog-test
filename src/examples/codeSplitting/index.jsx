@@ -2,9 +2,10 @@ import React, { Component, lazy } from "react";
 import Lazy, { asyncComponent } from "@/components/helper/lazyLoader";
 
 const WebpackDemo = asyncComponent(() => import("./demo")); // 异步读取组件 webpack
-const ReactLazyDemo = lazy(() => import("./demo"));
+// const ReactLazyDemo = lazy(() => import("./demo"));
+const ReactLazyDemo = asyncComponent(() => import("./demo"));
 
-@Lazy
+@asyncComponent
 class CodeSplitting extends Component {
   render() {
     return (

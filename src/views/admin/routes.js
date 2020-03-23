@@ -1,6 +1,7 @@
+import React from 'react';
 import {
-  lazy
-} from 'react';
+  asyncComponent as lazy
+} from '@/components/helper/lazyLoader';
 
 import AdminLayout from "@/components/admin/layout";
 import PageNotFound from "@/components/not-found";
@@ -14,6 +15,7 @@ export default {
   path: "admin",
   name: "home",
   component: AdminLayout,
+  protected: true,
   childRoutes: [{
       path: '',
       component: Home,

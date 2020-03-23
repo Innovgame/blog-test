@@ -1,6 +1,7 @@
-import React, {
-  lazy
-} from "react";
+import React from 'react';
+import {
+  asyncComponent as lazy
+} from '@/components/helper/lazyLoader';
 
 import Layout from "@/components/examples/layout";
 import ExamplePage from "./index";

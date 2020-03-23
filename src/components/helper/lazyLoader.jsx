@@ -19,11 +19,7 @@ export const asyncComponent = importComponent =>
 
     render() {
       const RenderComponet = this.state.component;
-      return RenderComponet ? (
-        <RenderComponet {...this.props} />
-      ) : (
-        <div>loading...</div>
-      );
+      return RenderComponet ? <RenderComponet {...this.props} /> : <Loading />;
     }
   };
 

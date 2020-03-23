@@ -1,9 +1,8 @@
-import React, { Suspense, Component } from "react";
+import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import routes from "@/routes/config";
 import "./App.less";
-import Loading from "@/components/loading";
 
 @connect(
   state => ({
@@ -12,21 +11,32 @@ import Loading from "@/components/loading";
   null
 )
 class App extends Component {
+  // 如果路由为 protected 且未登录时, 则定向到登录页
+  // admin 且未登录时 定向到登录页
+  authHandler = (item, routePath) => {
+    if (
+      (item.protected || routePath.includes("admin")) &&
+      !this.props.isLogin
+    ) {
+      item = {
+        ...item,
+        component: () => <Redirect to="/login" />,
+        children: []
+      };
+    }
+  };
   render() {
     const renderRoutes = (routes, contextPath) => {
       const children = [];
 
       const renderRoute = (item, routeContextPath) => {
+        let newContextPath = item.path
+          ? `${routeContextPath}/${item.path}`
+          : routeContextPath;
+        newContextPath = newContextPath.replace(/\/+/g, "/");
         // auth handler
-        if (item.protected && !this.props.isLogin) {
-          item = {
-            ...item,
-            component: () => <Redirect to="/admin/login" />,
-            children: []
-          };
-        }
+        this.authHandler(item, newContextPath);
 
-        let newContextPath;
         if (/^\//.test(item.path)) {
           newContextPath = item.path;
         } else {
@@ -48,25 +58,14 @@ class App extends Component {
             />
           );
         } else if (item.component) {
-          if (typeof item.component === "function") {
-            children.push(
-              <Route
-                key={newContextPath}
-                component={item.component}
-                path={newContextPath}
-                exact
-              />
-            );
-          } else {
-            children.push(
-              <Route
-                key={newContextPath}
-                path={newContextPath}
-                component={() => <item.component />}
-                exact
-              />
-            );
-          }
+          children.push(
+            <Route
+              key={newContextPath}
+              component={item.component}
+              path={newContextPath}
+              exact
+            />
+          );
         } else if (item.childRoutes) {
           item.childRoutes.forEach(r => renderRoute(r, newContextPath));
         }
@@ -83,9 +82,7 @@ class App extends Component {
       // <div className="App">
       //   {/* <CounterDemo></CounterDemo> */}
       // </div>
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>{children}</Suspense>
-      </BrowserRouter>
+      <BrowserRouter>{children}</BrowserRouter>
     );
   }
 }
