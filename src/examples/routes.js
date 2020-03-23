@@ -2,7 +2,7 @@ import React, {
   lazy
 } from "react";
 
-import Layout from "@/components/layout";
+import Layout from "@/components/examples/layout";
 import ExamplePage from "./index";
 import CounterDemo from "@/components/counter-demo";
 import FormBuilder from "./formBuilder";
