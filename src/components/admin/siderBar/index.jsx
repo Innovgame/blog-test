@@ -31,7 +31,7 @@ class SiderNav extends Component {
             title={
               <span>
                 {item.icon && <Icon type={item.icon} />}
-                {item.name}
+                <span>{item.name}</span>
               </span>
             }
             key={newContextPath}
@@ -45,7 +45,7 @@ class SiderNav extends Component {
             <Menu.Item key={newContextPath}>
               <NavLink to={newContextPath}>
                 {item.icon && <Icon type={item.icon} />}
-                {item.name}
+                <span>{item.name}</span>
               </NavLink>
             </Menu.Item>
           )

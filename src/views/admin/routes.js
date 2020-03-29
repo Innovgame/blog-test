@@ -24,7 +24,7 @@ export default {
     },
     {
       path: 'articles',
-      icon: 'file',
+      icon: 'edit',
       name: '文章管理',
       childRoutes: [{
           path: 'edit',

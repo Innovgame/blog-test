@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Layout } from "antd";
 import SideBarNav from "../siderBar";
+import AdminHeader from "../header";
 
 const { Sider, Header, Content, Footer } = Layout;
 
@@ -12,17 +13,25 @@ class AdminLayout extends Component {
 
   state = { collapsed: false };
 
+  toggle = () => {
+    this.setState(preState => ({
+      collapsed: !preState.collapsed
+    }));
+  };
+
   render() {
     return (
-      <div className="">
+      <div className="admin-container">
         <Layout>
           <Sider collapsible trigger={null} collapsed={this.state.collapsed}>
             <SideBarNav />
           </Sider>
           <Layout>
             <Header style={{ background: "#fff", padding: "0 16px" }}>
-              {/* <HeaderBar collapsed={this.state.collapsed} onToggle={this.toggle} /> */}
-              header bar
+              <AdminHeader
+                collapsed={this.state.collapsed}
+                onToggle={this.toggle}
+              />
             </Header>
             <Content>{this.props.children}</Content>
             <Footer style={{ textAlign: "center" }}>
